@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace RetroRPG.Character
 {
-    public class CharacterController : MonoBehaviour
+    public class RetroCharacterController : MonoBehaviour
     {
         Vector3 _updatedVector = new Vector3();
 
+        public Transform input;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -21,6 +24,12 @@ namespace RetroRPG.Character
 
             if (Input.anyKey)
             {
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    EventSystem.current.SetSelectedGameObject(input.gameObject, null);
+                    //input.OnPointerClick(null);
+                }
+                
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     transform.transform.Rotate(0f, -90f, 0f);
